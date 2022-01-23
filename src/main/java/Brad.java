@@ -80,7 +80,7 @@ public class Brad {
             System.out.println();
         }
     }
-
+//Apelarea functiilor
     public static void main(String[] args) {
         int h;
         Scanner keyboard=new Scanner(System.in);
@@ -89,6 +89,5 @@ public class Brad {
         Brad brad1=new Brad(h);
         String arrayBrad[][]=brad1.InitArrayBrad();
         brad1.AfisareBradDinArray(arrayBrad);
-        //brad1.AfisareBradInConsola();
     }
 }
