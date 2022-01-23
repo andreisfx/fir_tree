@@ -1,17 +1,15 @@
-import java.awt.event.WindowAdapter;
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class CreateTree {
+public class Brad {
     public int inaltime;
     public int tulpina;
-    public CreateTree(int inaltime) {
+    public Brad(int inaltime) {
         this.inaltime = inaltime;
-        this.tulpina=inaltime/4;
+        this.tulpina=inaltime/3;
     }
 
-    public void AfisareBrad(String[][] brad){
-        for(int i=0;i<inaltime;i++){
+    public void AfisareBradDinArray(String[][] brad){
+        for(int i=0;i<inaltime+tulpina;i++){
             for (int j=0;j<((inaltime*2));j++){
                 System.out.print(brad[i][j]);
             }
@@ -19,34 +17,51 @@ public class CreateTree {
         }
     }
     public String[][] InitArrayBrad(){
-        String brad[][]=new String[inaltime][((inaltime*2))];
-        for(int i=0;i<inaltime;i++){
-
-            for(int j=0;j<(inaltime*2);j++){
-
-                if(j<((inaltime-i))){
-                    brad[i][j]=" ";
-                }else if(j>=(inaltime-i)&&j<=(inaltime+i)){
-                    for(int k=0;k<((2*i)+1);k++){
-                        brad[i][j]="*";
-                        if(k==(2*i)){
-                            break;
-                        }else {
-                            j++;
+        String brad[][]=new String[inaltime+tulpina][((inaltime*2))];
+        for(int i=0;i<inaltime+tulpina;i++){
+            if(i<inaltime){
+                for(int j=0;j<(inaltime*2);j++){
+                    if(j<((inaltime-i))){
+                        brad[i][j]=" ";
+                    }else if(j>=(inaltime-i)&&j<=(inaltime+i)){
+                        for(int k=0;k<((2*i)+1);k++){
+                            brad[i][j]="*";
+                            if(k==(2*i)){
+                                break;
+                            }else {
+                                j++;
+                            }
                         }
+                    }else{
+                        brad[i][j]=" ";
                     }
-                }else{
-                    brad[i][j]=" ";
                 }
+            }else{
+                for(int j=0;j<(inaltime*2);j++){
+                    if(tulpina>=2 && j==inaltime-(tulpina/2)){
+                        for(int k=0;k<=tulpina;k++){
+                            brad[i][j]="*";
+                            if(k==tulpina){
+                                break;
+                            }else {
+                                j++;
+                            }
+                }
+                    }else if(tulpina<2 && j==inaltime){
+                    brad[i][j]="*";
+                }else {
+                        brad[i][j]=" ";
+                    }
+        }
             }
         }
         return brad;
     }
-    public void InitBrad(){
-        int tulpina=inaltime/4;
+    public void AfisareBradInConsola(){
+        //int tulpina=inaltime/4;
         for (int i = 0; i < inaltime+tulpina; i++) {
 
-            if(i<=inaltime){
+            if(i<inaltime){
                 for (int j = 0; j < inaltime - i; j++){
                     System.out.print(" ");
                 }
@@ -55,7 +70,7 @@ public class CreateTree {
                     System.out.print("*");
                 }
             }else{
-                for(int t=0;t<(inaltime-tulpina);t++){
+                for(int t=0;t<(((inaltime*2)-1)/2);t++){
                     System.out.print(" ");
                 }
                 for(int tp=(inaltime/2);tp<inaltime;tp++){
@@ -71,9 +86,9 @@ public class CreateTree {
         Scanner keyboard=new Scanner(System.in);
         System.out.println ("Introduceti inaltimea bradului:");
         h=keyboard.nextInt();
-        CreateTree createTree=new CreateTree(h);
-        //createTree.InitBrad();
-        String brad[][]=createTree.InitArrayBrad();
-        createTree.AfisareBrad(brad);
+        Brad brad1=new Brad(h);
+        String arrayBrad[][]=brad1.InitArrayBrad();
+        brad1.AfisareBradDinArray(arrayBrad);
+        //brad1.AfisareBradInConsola();
     }
 }
